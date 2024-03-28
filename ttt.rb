@@ -50,6 +50,11 @@ class Game
         @board.sequence
     end
 
+    def convert_move_to_index(move)
+        row_char = move[0].upcase
+        col_num = move[1].to_i - 1
+        return [row_char.ord - 65, col_num]
+    end
     WIN_POSSIBILITIES = [
         [@a1, @a3, @a5],
         [@b1, @b3, @b5],
@@ -88,4 +93,5 @@ until game.win_condition == true
     game.player_move(player1, p1move, p1symbol)
     p2move = player2.your_turn(player2)
     game.player_move(player2, p2move, p2symbol)
+    game.win_condition
 end
